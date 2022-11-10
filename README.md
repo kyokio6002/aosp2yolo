@@ -1,5 +1,7 @@
 # aosp2yolo
 
+you can use this to convert [AvLab/AOSP](https://github.com/AvLab-CV/AOLP) format to yolo format
+
 ```tree
 C:.
 ├─output_set
