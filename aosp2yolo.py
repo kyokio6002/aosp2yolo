@@ -50,8 +50,8 @@ def convert_location(left, upper, right, bottom, input_image_path):
     (h, w, _) = cv2.imread(str(input_image_path)).shape
     x_center = float((right + left) / 2) / w
     y_center = float((upper + bottom) / 2) / h
-    width = float(right + left) / w
-    height = float(upper + bottom) / h
+    width = float(right - left) / w
+    height = float(bottom - upper) / h
     return x_center, y_center, width, height
 
 
@@ -69,7 +69,7 @@ def convert2yolo(input_image_path, input_text_path, input_path, train_or_test, s
         print(f'output_text_path:{output_text_path}')
         with open(output_text_path, mode='w', encoding='utf_8') as f:
             x_center, y_center, width, height = convert_location(left, upper, right, bottom, input_image_path)
-            f.write(f'plate {x_center:06f} {y_center:06f} {width:06f} {height:06f}\n')
+            f.write(f'0 {x_center:06f} {y_center:06f} {width:06f} {height:06f}\n')
         shutil.copy(input_image_path, output_image_path)
 
 
