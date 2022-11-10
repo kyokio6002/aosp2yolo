@@ -1,0 +1,29 @@
+### general ###
+*
+!**/
+!README.md
+
+### git ###
+!/.git/.gitconfig
+!/.gitignore
+
+
+### aosp2yolo ###
+!/aosp2yolo.py
+
+### AC/LE/RP ###
+!/Subset_AC/.gitkeep
+!/Subset_LE/.gitkeep
+!/Subset_RP/.gitkeep
+
+### ignore ###
+*.pem
+*.key
+*.swp
+.DS_Store
+__pycache__/
+.idea/
+*.pyc
+.netrwhist
+*.jpg
+*.txt
