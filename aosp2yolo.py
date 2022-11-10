@@ -2,6 +2,9 @@
 from pathlib import Path
 import shutil
 
+import cv2
+from PIL import Image, ImageDraw
+
 
 BASE_DIR = Path(__file__).resolve().parent
 SUBNET_AC = BASE_DIR.joinpath('Subset_AC')
@@ -13,6 +16,7 @@ INPUT_TEST_PATH_LIST = [SUBNET_RP]
 
 OUTPUT_TRAIN_PATH = BASE_DIR.joinpath('train')
 OUTPUT_TEST_PATH = BASE_DIR.joinpath('test')
+
 
 def get_text_path(image_path, train_path):
     image_name = Path(image_path.name)
@@ -32,7 +36,6 @@ def show_rectangle(image_path, left, upper, right, bottom):
         print(f'right:{right}')
         print(f'left:{left}')
 
-        from PIL import Image, ImageDraw
         image = Image.open(image_path)
         draw = ImageDraw.Draw(image)
         draw.rectangle(
@@ -44,7 +47,6 @@ def show_rectangle(image_path, left, upper, right, bottom):
 
 
 def convert_location(left, upper, right, bottom, input_image_path):
-    import cv2
     (h, w, _) = cv2.imread(str(input_image_path)).shape
     x_center = float((right + left) / 2) / w
     y_center = float((upper + bottom) / 2) / h
