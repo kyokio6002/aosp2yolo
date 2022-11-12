@@ -11,6 +11,7 @@
 
 ### aosp2yolo ###
 !/aosp2yolo.py
+!/split_data.py
 
 ### AC/LE/RP ###
 !/Subset_AC/.gitkeep
