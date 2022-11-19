@@ -7,16 +7,11 @@
 ### git ###
 !/.git/.gitconfig
 !/.gitignore
-
+!.gitkeep
 
 ### aosp2yolo ###
 !/aosp2yolo.py
 !/split_data.py
-
-### AC/LE/RP ###
-!/Subset_AC/.gitkeep
-!/Subset_LE/.gitkeep
-!/Subset_RP/.gitkeep
 
 ### ignore ###
 *.pem
