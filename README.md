@@ -8,7 +8,7 @@ format
 
 ```tree
 C:.
-├─output_set
+├─cfg
 ├─Subset_AC
 │  ├─groundtruth_localization
 │  ├─groundtruth_recognition
@@ -21,5 +21,5 @@ C:.
 │  ├─groundtruth_localization
 │  ├─groundtruth_recognition
 │  └─Image
-├─test
+├─...
 ```
