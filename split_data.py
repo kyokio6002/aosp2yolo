@@ -24,7 +24,7 @@ def split_data():
     }
 
     for key, value in datas.items():
-        text_path = base_dir.joinpath(f'{key}.txt')
+        text_path = base_dir.joinpath(f'cfg/{key}.txt')
         print(f'{key}:{len(value)}')
         with open(text_path, mode='w', encoding='utf_8') as f:
             for image in value:
