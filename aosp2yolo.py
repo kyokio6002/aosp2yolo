@@ -1,5 +1,6 @@
 '''convert AOSP to YOLO'''
 from pathlib import Path
+import random
 import shutil
 
 import cv2
@@ -75,8 +76,6 @@ def convert2yolo(input_image_path, input_text_path, input_path, train_or_test, s
 
 def main():
 
-    make_output_dir()
-
     for input_train_path in INPUT_TRAIN_PATH_LIST:
         image_paths = input_train_path.glob('Image/*.jpg')
         set_type = input_train_path.name[-2:]
@@ -92,5 +91,36 @@ def main():
             convert2yolo(image_path, text_path, input_test_path, train_or_test='test', set_type=set_type)
 
 
+def split_data():
+    base_dir = Path(__file__).resolve().parent
+    input_train_path = base_dir.joinpath('train')
+    input_test_path = base_dir.joinpath('test')
+
+    train_rate = 0.8
+    train_valid_images = list(input_train_path.glob('*.jpg'))
+
+    random.seed(100)
+    random.shuffle(train_valid_images)
+
+    train_images = train_valid_images[:int(len(train_valid_images)*train_rate)]
+    valid_images = train_valid_images[int(len(train_valid_images)*train_rate):]
+    test_images = list(input_test_path.glob('*.jpg'))
+
+    datas = {
+        'train': train_images,
+        'valid': valid_images,
+        'test': test_images
+    }
+
+    for key, value in datas.items():
+        text_path = base_dir.joinpath(f'cfg/{key}.txt')
+        print(f'{key}:{len(value)}')
+        with open(text_path, mode='w', encoding='utf_8') as f:
+            for image in value:
+                f.write(str(image)+'\n')
+
+
 if __name__ == '__main__':
+    make_output_dir()
     main()
+    split_data()
